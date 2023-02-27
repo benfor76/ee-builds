@@ -56,7 +56,7 @@ jobs:
 
       - name: Log in to Private Automation Hub 
         id: registry-pah
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v1 --tls-verify=false
         with:
           registry: 10.10.0.58
           username: ${{ secrets.PAH_USERNAME }}
