@@ -55,13 +55,16 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Log in to Private Automation Hub 
-        id: registry-pah
-        uses: redhat-actions/podman-login@v1
-        tls-verify: false
-        with:
-          registry: 10.10.0.58
-          username: ${{ secrets.PAH_USERNAME }}
-          password: ${{ secrets.PAH_PASSWORD }}
+        run podman login 10.10.0.58 -u ${{ secrets.PAH_USERNAME }} -p ${{ secrets.PAH_PASSWORD }} --tls-verify=false
+
+      #- name: Log in to Private Automation Hub 
+      #  id: registry-pah
+      #  uses: redhat-actions/podman-login@v1
+      #  tls-verify: false
+      #  with:
+      #    registry: 10.10.0.58
+      #    username: ${{ secrets.PAH_USERNAME }}
+      #    password: ${{ secrets.PAH_PASSWORD }}
 
       - name: Log in to registry.redhat.io
         id: registry-redhat
