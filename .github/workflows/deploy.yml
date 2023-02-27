@@ -56,11 +56,12 @@ jobs:
 
       - name: Log in to Private Automation Hub 
         id: registry-pah
-        uses: redhat-actions/podman-login@v1 --tls-verify=false
+        uses: redhat-actions/podman-login@v1
         with:
           registry: 10.10.0.58
           username: ${{ secrets.PAH_USERNAME }}
           password: ${{ secrets.PAH_PASSWORD }}
+          tls-veriy: false
 
       - name: Log in to registry.redhat.io
         id: registry-redhat
@@ -100,6 +101,7 @@ jobs:
           registry: 10.10.0.58/
           username: ${{ secrets.PAH_USERNAME }}
           password: ${{ secrets.PAH_PASSWORD }} 
+          tls-verify: false
         
       - name: Print summary
         working-directory: ${{ inputs.EE_FOLDER_NAME }}
