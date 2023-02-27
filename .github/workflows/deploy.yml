@@ -61,7 +61,7 @@ jobs:
           registry: 10.10.0.58
           username: ${{ secrets.PAH_USERNAME }}
           password: ${{ secrets.PAH_PASSWORD }}
-          tls-veriy: false
+          tls-verify: false
 
       - name: Log in to registry.redhat.io
         id: registry-redhat
