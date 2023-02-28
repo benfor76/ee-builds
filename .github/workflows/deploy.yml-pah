@@ -55,16 +55,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Log in to Private Automation Hub 
-        run podman login 10.10.0.58 -u ${{ secrets.PAH_USERNAME }} -p ${{ secrets.PAH_PASSWORD }} --tls-verify=false
-
-      #- name: Log in to Private Automation Hub 
-      #  id: registry-pah
-      #  uses: redhat-actions/podman-login@v1
-      #  tls-verify: false
-      #  with:
-      #    registry: 10.10.0.58
-      #    username: ${{ secrets.PAH_USERNAME }}
-      #    password: ${{ secrets.PAH_PASSWORD }}
+        id: registry-pah
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: pah.thatcigardude.com 
+          username: ${{ secrets.PAH_USERNAME }}
+          password: ${{ secrets.PAH_PASSWORD }}
 
       - name: Log in to registry.redhat.io
         id: registry-redhat
@@ -101,10 +97,9 @@ jobs:
           tags: |
             ${{ inputs.EE_IMAGE_TAG }}
             ${{ github.sha }}
-          registry: 10.10.0.58/
+          registry: pah.thatcigardude.com/
           username: ${{ secrets.PAH_USERNAME }}
           password: ${{ secrets.PAH_PASSWORD }} 
-          tls-verify: false
         
       - name: Print summary
         working-directory: ${{ inputs.EE_FOLDER_NAME }}
@@ -113,7 +108,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Image pushed to repository: [${{ steps.push-to-pah.outputs.registry-path }}](https://${{ steps.push-to-pah.outputs.registry-path }})" >> $GITHUB_STEP_SUMMARY
           echo "> \`podman pull ${{ steps.push-to-pah.outputs.registry-path }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "> \`podman pull 10.10.0.58/${{ inputs.PAH_USERNAME }}/${{ inputs.EE_FOLDER_NAME }}:${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "> \`podman pull pah.thatcigardude.com/${{ inputs.PAH_USERNAME }}/${{ inputs.EE_FOLDER_NAME }}:${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
           echo "## :pushpin: Ansible info:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
