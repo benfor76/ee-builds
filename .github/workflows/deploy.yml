@@ -17,10 +17,10 @@ on:
         default: 'latest'
         required: true
         type: string
-      PAH_USER:
-        description: 'this is used during the image push to Private Automation Hub'
-        required: true
-        type: string
+      #PAH_USERNAME:
+      #  description: 'this is used during the image push to Private Automation Hub'
+      #  required: true
+      #  type: string
     secrets:
       REDHAT_PASSWORD:
         description: 'needed for registry login'
