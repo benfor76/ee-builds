@@ -17,7 +17,7 @@ on:
         default: 'latest'
         required: true
         type: string
-      PAH_USERNAME:
+      PAH_USER:
         description: 'this is used during the image push to Private Automation Hub'
         required: true
         type: string
@@ -30,10 +30,10 @@ on:
         required: false
       PAH_USERNAME:
         description: 'needed for Private Automation Hub login'
-        required: false
+        required: true
       PAH_PASSWORD:
         description: 'needed for Private Automation Hub login login'
-        required: false
+        required: true
       AH_TOKEN:
         description: 'API token for hosted automation hub'
         required: false
