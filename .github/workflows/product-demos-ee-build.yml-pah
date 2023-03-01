@@ -24,9 +24,10 @@ jobs:
     with:
       EE_FOLDER_NAME: 'product-demos-ee'
       EE_IMAGE_TAG: 'latest'
-      PAH_USERNAME: 'admin'
+     # PAH_USERNAME: 'admin'
     secrets:
       REDHAT_USERNAME: ${{ secrets.REDHAT_USERNAME }}
       REDHAT_PASSWORD: ${{ secrets.REDHAT_PASSWORD }}
+      PAH_USERNAME: ${{ secrets.PAH_USERNAME }}
       PAH_PASSWORD: ${{ secrets.PAH_PASSWORD }}
       AH_TOKEN: ${{ secrets.AH_TOKEN }}
