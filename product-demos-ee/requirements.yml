@@ -6,5 +6,7 @@ collections:
   - name: redhat.rhel_system_roles
   - name: community.general
   - name: containers.podman
+  #ServiceNow
+  - name: servicenow.itsm
   #satellite
   #- name: redhat.satellite
