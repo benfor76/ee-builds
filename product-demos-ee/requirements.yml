@@ -7,4 +7,4 @@ collections:
   - name: community.general
   - name: containers.podman
   #satellite
-  - name: redhat.satellite
+  #- name: redhat.satellite
