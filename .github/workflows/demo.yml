@@ -1,0 +1,32 @@
+# Workflow name
+name: Demo EE build
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches:
+      - main
+    paths:
+      - 'demo/**'
+
+  # Schedule workflow run at 00:00 on Sunday
+  schedule:
+    - cron: '0 0 * * 0'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  call-deploy-workflow:
+    uses:  benfor76/ee-builds/.github/workflows/deploy.yml@main
+    with:
+      EE_FOLDER_NAME: 'demo'
+      EE_IMAGE_TAG: 'latest'
+    secrets:
+      REDHAT_USERNAME: ${{ secrets.REDHAT_USERNAME }}
+      REDHAT_PASSWORD: ${{ secrets.REDHAT_PASSWORD }}
+      PAH_USERNAME: ${{ secrets.PAH_USERNAME }}
+      PAH_PASSWORD: ${{ secrets.PAH_PASSWORD }}
+      AH_TOKEN: ${{ secrets.AH_TOKEN }}
